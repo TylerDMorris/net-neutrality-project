@@ -1,0 +1,135 @@
+------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  D:\Documents\POLS 3312 Research Paper\Net_Neutrality.log
+  log type:  text
+ opened on:  18 Oct 2016, 00:53:11
+
+. 
+. ************************************************
+. * NOTE: Due to issues with Stata 12's handling *
+. * of xls files, it was necessary to manually   *
+. * copy and paste the data into a dta file.     *
+. *                                              *
+. * Both the original xls file and the relevant  *
+. * dta file are available in the repo from which*
+. * this do file was attained.                   *
+. ************************************************
+. 
+. use "Web-Index-Data_2014.dta"
+
+. 
+. hist affordability
+(bin=9, start=0, width=11.111111)
+
+. sum affordability, d
+
+                       Internet Access
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%            0              0
+ 5%      18.7171        .872209
+10%       27.499         8.9693       Obs                  81
+25%      45.7962        9.60359       Sum of Wgt.          81
+
+50%       61.308                      Mean           60.11053
+                        Largest       Std. Dev.      24.48804
+75%      80.6783        96.8418
+90%      91.6972        97.0702       Variance       599.6641
+95%      96.5278        97.3448       Skewness       -.414475
+99%          100            100       Kurtosis       2.595865
+
+. hist gdp_per
+(bin=9, start=779.68597, width=15849.702)
+
+. sum gdp_per, d
+
+                       GDP Per Capita
+-------------------------------------------------------------
+      Percentiles      Smallest
+ 1%      779.686        779.686
+ 5%     1698.307       1173.961
+10%     2022.571       1588.992       Obs                  81
+25%     5855.306       1681.667       Sum of Wgt.          81
+
+50%     17880.51                      Mean           24384.56
+                        Largest       Std. Dev.      23404.55
+75%     39510.94       64478.67
+90%     49194.77       66937.46       Variance       5.48e+08
+95%     58087.21       82762.15       Skewness       1.954192
+99%       143427         143427       Kurtosis       9.675359
+
+. hist fixed_broadband_cost
+(bin=9, start=.40000001, width=71.344444)
+
+. 
+. graph twoway (lfitci affordability neutrality) /// 
+> (scatter affordability neutrality)
+
+. corr affordability neutrality
+(obs=81)
+
+             | afford~y neutra~y
+-------------+------------------
+affordabil~y |   1.0000
+  neutrality |   0.6145   1.0000
+
+
+. twoway scatter affordability gdp_per
+
+. 
+. gen log_gdp = ln(gdp_per)
+(6 missing values generated)
+
+. gen cost = fixed_broadband_cost * gdp_per
+(6 missing values generated)
+
+. gen log_cost = ln(cost)
+(6 missing values generated)
+
+. 
+. twoway scatter log_cost log_gdp
+
+. twoway scatter affordability log_cost
+
+. 
+. reg affordability neutrality log_gdp log_cost
+
+      Source |       SS       df       MS              Number of obs =      81
+-------------+------------------------------           F(  3,    77) =  173.42
+       Model |  41788.4099     3    13929.47           Prob > F      =  0.0000
+    Residual |  6184.71547    77  80.3209801           R-squared     =  0.8711
+-------------+------------------------------           Adj R-squared =  0.8661
+       Total |  47973.1254    80  599.664067           Root MSE      =  8.9622
+
+------------------------------------------------------------------------------
+affordabil~y |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+  neutrality |   2.479562   .4530696     5.47   0.000     1.577385    3.381738
+     log_gdp |   14.34046   .9864961    14.54   0.000     12.37609    16.30482
+    log_cost |  -4.736585   1.519273    -3.12   0.003    -7.761843   -1.711327
+       _cons |  -33.99732   21.71131    -1.57   0.121    -77.23005    9.235419
+------------------------------------------------------------------------------
+
+. reg neutrality log_cost
+
+      Source |       SS       df       MS              Number of obs =      81
+-------------+------------------------------           F(  1,    79) =    7.41
+       Model |  42.5142927     1  42.5142927           Prob > F      =  0.0080
+    Residual |  453.485707    79  5.74032541           R-squared     =  0.0857
+-------------+------------------------------           Adj R-squared =  0.0741
+       Total |         496    80         6.2           Root MSE      =  2.3959
+
+------------------------------------------------------------------------------
+  neutrality |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+    log_cost |  -.9821795    .360904    -2.72   0.008    -1.700541   -.2638181
+       _cons |    14.0689   3.913044     3.60   0.001     6.280179    21.85762
+------------------------------------------------------------------------------
+
+. 
+. log close
+      name:  <unnamed>
+       log:  D:\Documents\POLS 3312 Research Paper\Net_Neutrality.log
+  log type:  text
+ closed on:  18 Oct 2016, 00:53:15
+------------------------------------------------------------------------------
