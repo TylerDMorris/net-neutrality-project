@@ -8,13 +8,13 @@ Network Neutrality and Internet access
 Tyler Morris  
 University of Houston
 
-#Abstract
+# Abstract
 
 The academic discourse around Network Neutrality – the idea that Internet Service Providers should be required to manage network traffic in a manner that does not discriminate against providers of web content for commercial gain – has thus far been scant and inconclusive, particularly when it comes to empirical analysis. This paper attempts to begin to fill that gap by providing an answer to the question of whether the presence of Network Neutrality regulations stifle Internet access - the development and improvement of both fixed and mobile broadband internet-related infrastructure in a country, consumer prices for internet service, and per-capita broadband subscription rates – by building a series of regression models to explain how the presence of Network Neutrality regulation affects Broadband Internet prices, and thus Internet Access.
 
 This paper provides empirical support for the argument that Network Neutrality policies do not lead to an increase in prices for Broadband Internet, nor do Network Neutrality regulations lead to a decrease in Internet access. Data is collected from survey results polling technology experts in 86 countries, as well as quantitative analyses of GDP per capita and the proportion of Broadband Internet cost to GDP per capita. This analysis results in the conclusion that there is insufficient evidence for the hypothesis that Network Neutrality regulations increase Broadband Internet prices.
 
-#1. Introduction
+# 1. Introduction
 
 For the last generation, the Internet has pervaded every aspect of modern life. From agriculture, to banking, to chemistry, it is difficult, if not impossible, to find an industry that has not incorporated the Internet en masse. The ability to transfer and store massive amounts of information effectively instantly has been so pervasive as to constitute a “third industrial revolution” (Smith, 2001). Because the Internet constitutes an entirely new type of communication technology, however, there has been much debate over how the Internet should be governed and regulated. While numerous ideas for regulatory schemes abound, the most controversial proposed aspect of regulation has been Network, or Net, Neutrality – the idea that Internet Service Providers should be required to manage network traffic in a manner that does not discriminate against providers of web content for commercial gain.
 
@@ -24,7 +24,7 @@ Much of the debate around Network Neutrality regulation centers on its effect on
 
 This article specifically investigates the claim that Network Neutrality leads to decreased Internet access for the end user. The lack of a research base on this specific topic as well as the relative availability of heuristics by which to evaluate its assumptions mean that this analysis can yield a large amount of knowledge despite having little prior research invested into it.
 
-#2. Hypotheses
+# 2. Hypotheses
 
 Though research on the effects of Network Neutrality is somewhat scarce, economic intuition points toward the hypothesis that requiring payment from content providers would be a potential source of income for Internet Service Providers, and as such, the ability to do so would lower internet prices for the consumer. The hypothesis that enforcing Network Neutrality policies would cut off a source of income for Internet Service Providers, thus raising prices for consumers, is supported by existing economic models of the Internet Service industry (Economides and Tåg, 2007). Thus, intuition leads to hypothesis H1:
 
@@ -38,9 +38,9 @@ Because the law of demand holds that as the price of a good increases, the deman
 
 In order to better test these hypotheses, it is important that a country’s GDP per capita is controlled for, as it is potentially a strong confounding variable – it would be logical for Internet access to be more common in countries with higher incomes. These hypotheses will be tested against the null hypothesis that Network Neutrality regulations, the price of Broadband Internet prices, and Internet access in a country are all uncorrelated.
 
-#3. Method
+# 3. Method
 
-##3.1 Operationalization of Concepts & Collection of Data
+## 3.1 Operationalization of Concepts & Collection of Data
 
 The most critical definition necessary to determine whether or not Network Neutrality causes a decrease in Internet access is, of course, Network Neutrality. Because the presence of Network Neutrality legislation in a country is inherently a difficult thing to objectively measure, the best source for data on Network Neutrality legislation is likely the survey of worldwide experts in the Technology industry conducted for the Web Index project by the World Wide Web Foundation. The data used here are gathered from the 2014 edition of the Web Index project. The primary drawback to using this data as a proxy for Network Neutrality regulation is that the question from which the data is gathered asks respondents to rank their country on a 0-8 scale. This ordinal ranking means that any sort of practical interpretation of the data is made substantially more difficult, if not impossible.
 
@@ -50,13 +50,13 @@ The most readily-accessible and descriptive data for Broadband Internet prices i
 
 Finally, in order to provide the data necessary to control for a country’s income, Gross Domestic Product per Capita is used, gathered from the International Monetary Fund’s estimate of 2014 GDP per Capita via Purchasing Power Parity. The benefits and downsides of GDP per Capita as a proxy for average income are extensively documented in Economic literature – it is used here because it is readily available data for every country in the dataset, and because data are being compared across nations, availability is important. GDP per Capita is also well-defined and strictly defined, which makes it a good control variable.
 
-##3.2 Data Analysis
+## 3.2 Data Analysis
 
 In order to analyze this data, Stata 12 (Stata Corp, College Station, TX) will be used to generate a multivariate linear regression model including several variables. This regression will only include countries for which all variables were observed. Of 86 countries that were included in the Web Index, 5 did not report internet price data to ITU. All countries reported GDP, and as such, 81 countries were included in the data set.
 
 A second, bivariate regression will be generated in order to test the hypothesis that Network Neutrality legislation is positively correlated with the price of Internet service in a country.
 
-##3.3 Caveats and Ideal Methodology
+## 3.3 Caveats and Ideal Methodology
 
 As previously mentioned, because of the fact that several variables (including the dependent variable) are a result of ordinal survey data, many of the variable coefficients will be difficult, if not impossible, to meaningfully interpret. Further, though Technology experts should have a good idea of what constitutes a strong regulatory scheme for Network Neutrality, it is possible that different experts would have differing opinions on where a particular country belongs on a 0-8 scale. This opens the study up to a risk of becoming only a survey of Technology experts’ opinions regarding Network Neutrality regulations in their country. It would be possible to negate this risk if we instead decided to manually analyze the codified Network Neutrality regulations in each country, but this option would be needlessly time consuming, and rely on the opinion of only one observer that has not actually had to comply and live under the regulatory schemes of most reviewed countries. As such, the methodology used here is likely preferable.
 
@@ -65,9 +65,9 @@ Further, a number of proposed frameworks for Network Neutrality regulation have 
 In an ideal world where it were possible to control all variables, it would be preferable to randomly assign regulatory schemes that enforce Network Neutrality to a random subset of countries. Unfortunately, however, this is not only unfeasible, but unethical – it would be dangerous to assign a random subset of the population a policy that could potentially deny them access to the Internet, which has become a driving engine for freedom of speech.
 
 
-#4. Results
+# 4. Results
 
-##4.1 Data Summary
+## 4.1 Data Summary
 
 ![](https://github.com/TylerMorrisHOU/net-neutrality-project/blob/master/accessHist.jpg?raw=true)
 
@@ -149,7 +149,7 @@ Much like GDP per capita, the cost of Broadband Internet service divided by GDP 
 
 At the far end of the distribution are two observations wherein Broadband Internet service costs 241.2% of GDP per capita and 642.5% of GDP per capita. These are extreme outliers, and it might be worthwhile to recalculate the model without them.
 
-##4.2 Data Exploration
+## 4.2 Data Exploration
 
 ![](https://github.com/TylerMorrisHOU/net-neutrality-project/blob/master/strengthAccessCorrelation.jpg?raw=true)
 
@@ -190,7 +190,7 @@ Surprisingly, the data shows a direct negative relationship between the natural 
 
 As expected, however, the price of Broadband Internet service in a country is negatively (though somewhat weakly) correlated with Internet access in that country.
 
-##4.3 The Models
+## 4.3 The Models
 
           Source |       SS       df       MS              Number of obs =      81
     -------------+------------------------------           F(  3,    77) =  173.42
@@ -227,7 +227,7 @@ Within this model, network neutrality regulations that are implemented such that
            \_cons |   9.545794   2.257704     4.23   0.000     5.051947    14.03964
     ------------------------------------------------------------------------------
 
-##4.4 Hypothesis Testing
+## 4.4 Hypothesis Testing
 
 Three hypotheses were presented in this test. First:
 
@@ -245,7 +245,7 @@ With an α-value of 0.05, the data available here fails to reject hypothesis H3.
 
 
  
-#5. Conclusion
+# 5. Conclusion
 
 The data presented here does not support the conclusion that an increase in Network Neutrality legislation leads to a decrease in Internet Access. That being said, there is a severe lack of empirical quantitative data when it comes to Network Neutrality research. Data that is collected differently may yield a different result.
 
@@ -255,7 +255,7 @@ A number of explanations are available to explain this aberration. It is possibl
 
 Given the data available, the choice here has been to err on the side of reliability as opposed to validity – while there might not be a clear, objective measure of Internet Access or Network Neutrality regulation readily available, the data used here should be adequate enough to effectively describe the differences between countries, at least to a basic degree.
  
-References
+# References
 
 Blevins, J., & Shade, L. (2010). International perspectives on network neutrality. Global Media Journal, 3(1), 1-8. Retrieved April 20, 2015
 
